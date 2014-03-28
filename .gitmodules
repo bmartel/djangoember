@@ -1,0 +1,3 @@
+[submodule "core/static/vendor/no-bss"]
+	path = core/static/vendor/no-bss
+	url = https://github.com/bmartel/No.BSS.git
