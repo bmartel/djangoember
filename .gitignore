@@ -1,0 +1,7 @@
+/.vagrant
+.DS_STORE
+/settings/local.py
+/static
+*.pyc
+.idea
+
