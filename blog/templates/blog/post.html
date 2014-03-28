@@ -1,0 +1,95 @@
+{% extends "blog/base.html" %}
+{% load humanize %}
+
+{% block content %}
+
+<article>
+    <h3><a href="#">{{ post.title }}</a></h3>
+    <h6>Written by <a href="#">user.name</a> on {{ post.created }}.</h6>
+
+    <div class="row">
+        <div class="large-12 columns">
+            {{ post.body|linebreaks }}
+        </div>
+    </div>
+</article>
+<hr/>
+
+<!-- Comments  -->
+{% if comments %}
+<h4>Comments:</h4>
+{% endif %}
+
+{% for comment in comments %}
+<div class="comment ">
+    <section class="top">
+        <h6 class="byline">
+            <a href="#"><i class="icon"></i>{{ comment.author }}</a>
+            <small>
+                said
+                <span class="data">
+                    {{ comment.created|naturaltime }}
+                </span>
+            </small>
+        </h6>
+    </section>
+    <section class="content">
+        <p>{{ comment.body|linebreaks }}</p>
+    </section>
+    <section class="actions">
+        <ul class="inline-list">
+            <li><a href="#">Like (5)</a></li>
+            <li><a href="#">Reply</a></li>
+        </ul>
+    </section>
+</div>
+{% for reply in comment.replies.all %}
+<div class="indented comment push">
+    <section class="top">
+        <h6 class="byline">
+            <a href="#"><i class="icon"></i>{{ reply.author }}</a>
+            <small>
+                said
+                    <span class="data">
+                        {{ reply.created|naturaltime }}
+                    </span>
+            </small>
+        </h6>
+    </section>
+    <section class="content">
+        <p>{{ reply.body|linebreaks }}</p>
+    </section>
+    <section class="actions">
+        <ul class="inline-list">
+            <li><a href="#">Like (5)</a></li>
+            <li><a href="#">Reply</a></li>
+        </ul>
+    </section>
+</div>
+{% endfor %}
+{% endfor %}
+<hr/>
+<br/>
+<br/>
+<div id="row">
+    <p>Leave a comment</p>
+
+</div>
+
+<!-- Comment form  -->
+<form action="{% url 'blog.views.add_comment' post.id %}" method="POST">{% csrf_token %}
+    <div class="row">
+        <div class="large-12 columns">
+            <label>
+                {{ form.author }}
+            </label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="large-12 columns">{{ form.body }}</div>
+    </div>
+    <div id="submit"><input class="button light-button tiny" type="submit" value="Submit"></div>
+</form>
+
+
+{% endblock %}

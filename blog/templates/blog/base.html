@@ -1,51 +1,315 @@
 <!doctype html>
-{% load compress %}
-<!--[if lt IE 7]> <html class="lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
-<!--[if IE 7]>    <html class="lt-ie10 lt-ie9 lt-ie8" lang="en"> <![endif]-->
-<!--[if IE 8]>    <html class="lt-ie10 lt-ie9" lang="en"> <![endif]-->
-<!--[if IE 9]>    <html class="lt-ie10" lang="en"> <![endif]-->
-<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en"> <!--<![endif]-->
+<html lang="en">
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>{% block title %}MyBlog{% endblock %}</title>
 
-     <title>{% block title %}MyBlog{% endblock %}</title>
 
-
-    <link rel="stylesheet" href="{{ STATIC_URL }}/static/vendor/no-bss/css/combined/app.min.css"/>
-
+    <link rel="stylesheet" href="{{ STATIC_URL }}/static/vendor/foundation/css/app.css"/>
+    <link rel="stylesheet" href="{{ STATIC_URL }}/static/css/app.css"/>
+    <script src="{{ STATIC_URL }}/static/vendor/foundation/bower_components/modernizr/modernizr.js"></script>
     {% block extra_css %}{% endblock %}
 
 </head>
 <body>
+<!--<div class="page">-->
+<!--<div class="off-canvas-wrap docs-wrap">-->
+<!--<div class="inner-wrap">-->
 
-    <div id="sidebar"> {% block sidebar %} {% endblock %} </div>
-    <div id="container" class="container fancy-wrap">
-        <div class="row">
-            <div class="columns two">My Blog</div>
-            <div id="menu">
-                {% block nav-global %}
+<!--{% block nav-global %}-->
+<!--&lt;!&ndash; Main Nav &ndash;&gt;-->
+<!--<nav class="tab-bar">-->
+<!--<section class="left-small">-->
+<!--<a class="left-off-canvas-toggle menu-icon"><span></span></a>-->
+<!--</section>-->
 
-                    <!-- Main Nav -->
+<!--<section class="middle tab-bar-section">-->
+<!--<h1 class="title">My Blog</h1>-->
+<!--</section>-->
 
-                    {% if user.is_staff %}
-                    <a href="{% url 'admin:index' %}">Admin</a>
-                    <a href="{% url 'admin:blog_post_add' %}">Add post</a>
-                    {% endif %}
+<!--<section class="right-small">-->
+<!--<a class="right-off-canvas-toggle menu-icon"><span></span></a>-->
+<!--</section>-->
+<!--</nav>-->
 
-                {% endblock %}
-            </div>
-            <div class="columns fourteen">Tabs go here!!</div>
+<!--<aside class="left-off-canvas-menu">-->
+<!--<ul class="off-canvas-list">-->
+<!--<li class="bc-menu-label"><label>Blog Posts</label></li>-->
+<!--<li><a href="#">Home</a></li>-->
+<!--<li><a href="#">Wiki</a></li>-->
+<!--<li><a href="#">Server Information</a></li>-->
+<!--<li><a href="#">Request Mods</a></li>-->
+<!--<li><a href="#">Mod Development</a></li>-->
+<!--<li><a href="#">Members</a></li>-->
+<!--<li class="bc-menu-label"><label>Forums</label></li>-->
+<!--<li><a href="#">Recent Activity</a></li>-->
+<!--<li><a href="#">Add New Category</a></li>-->
+<!--<li><a href="#">Add New Topic</a></li>-->
+<!--<li class="bc-menu-label"><label>Links</label></li>-->
+<!--<li><a href="#">Minecraft</a></li>-->
+<!--<li><a href="#">PlanetMinecraft</a></li>-->
+<!--<li><a href="#">CraftHub</a></li>-->
+<!--<li><a href="#">Forge</a></li>-->
+<!--</ul>-->
+<!--</aside>-->
+<!--<aside class="right-off-canvas-menu">-->
+<!--<ul class="off-canvas-list">-->
+<!--{% if user.is_staff %}-->
+<!--<li><label>Admin</label></li>-->
+<!--<li><a href="{% url 'admin:index' %}">Dashboard</a></li>-->
+<!--<li><a href="{% url 'admin:blog_post_add' %}">Add post</a></li>-->
+<!--{% endif %}-->
+<!--<li class="bc-menu-label"><label>Account Settings</label></li>-->
+
+<!--<li><a href="#">Profile</a></li>-->
+<!--<li><a href="#">Sign Up</a></li>-->
+<!--<li><a href="#">Sign In</a></li>-->
+<!--<li><a href="#">Sign Out</a></li>-->
+<!--</ul>-->
+<!--</aside>-->
+<!--{% endblock %}-->
+<!--&lt;!&ndash;End Main Nav &ndash;&gt;-->
+
+<!--&lt;!&ndash; Content &ndash;&gt;-->
+<!--<section class="main-section">-->
+<!--<div data-alert class="light-alert-box">-->
+<!--<a href="#" class="close">&times;</a>-->
+
+<!--<p class="text-center">Random Alert!</p>-->
+
+<!--</div>-->
+
+
+<!--<div id="content">-->
+
+<!--<div class="row extra-space">-->
+<!--<div class="small-4 medium-4 large-4 columns">-->
+<!--<h3>My Blog</h3>-->
+<!--</div>-->
+<!--<div class="small-8 medium-8 large-8 columns">-->
+
+<!--</div>-->
+<!--</div>-->
+
+<!--<div class="row">-->
+<!--<div class="small-12 medium-12 large-12 columns">-->
+
+<!--</div>-->
+<!--</div>-->
+<!--<div class="row">-->
+
+<!--<div class="large-8  small-12 columns">-->
+
+<!--&lt;!&ndash; COMMENT &ndash;&gt;-->
+<!--<div class="comment">-->
+<!--<section class="top">-->
+<!--<h6 class="byline">-->
+<!--<a href="#"><i class="icon"></i>Caleb Winters</a>-->
+<!--<small>said-->
+<!--<span class="data">-->
+<!--4h Ago-->
+<!--</span>-->
+<!--</small>-->
+<!--</h6>-->
+<!--</section>-->
+<!--<section class="content">-->
+<!--<p>Nice start, Becky. I really like some of the elements you have going so far. The header and-->
+<!--footer tie in nicely and the ribbon on tiles works well. The font is great also and looks-->
+<!--readable. Here are a few areas you can keep iterating on:</p>-->
+
+<!--<p>Simplify your color palette.</p>-->
+<!--</section>-->
+<!--<section class="actions">-->
+
+<!--<ul class="inline-list">-->
+<!--<li><a href="#">Like (3)</a></li>-->
+<!--<li><a href="#">Reply</a></li>-->
+<!--</ul>-->
+
+<!--</section>-->
+
+<!--</div>-->
+
+<!--&lt;!&ndash; INDENTED COMMENT &ndash;&gt;-->
+<!--<div class="indented comment push">-->
+<!--<section class="top">-->
+<!--<h6 class="byline">-->
+<!--<a href="#"><i class="icon"></i>Kyle Schmidt <span class="label">Post Author</span></a>-->
+<!--<small>said-->
+<!--<span class="data">-->
+<!--4h Ago-->
+<!--</span>-->
+<!--</small>-->
+<!--</h6>-->
+<!--</section>-->
+<!--<section class="content">-->
+<!--<p>Wow, guys. Lots of great feedback.</p>-->
+
+<!--<p>First, <a href="#">@Milkmusket</a>, I agree. I've struggled with that section and might take-->
+<!--advice for <a href="#">@albanesetr</a> and focus on a single feature rather than the whole-->
+<!--screenshot.</p>-->
+
+<!--<p><a>@Hans</a>, I usually try to go for drop shadows pumped with a little color, may not be the-->
+<!--case here but thanks for the comment. And for the header noise, and noise overall in the-->
+<!--site, I need to try reducing it all around before we go live.</p>-->
+
+<!--<p><a>@albanesetr</a>, thanks for all the good feedback. The pricing plans are definitely still-->
+<!--WIP, the yellow $150 should have a "Most Popular" header, you're right. Other mockups had-->
+<!--it, not sure why I haven't put it up yet.</p>-->
+
+<!--<p>I'll try reducing the header, the active state was just conceptual at this point. For the one-->
+<!--shown, I was considering a fixed header and wanted the user to see where they were at when-->
+<!--scrolling. So the thick yellow bar would slide when you scroll.</p>-->
+
+<!--<p>Again, thanks everyone. I really enjoy the feedback on Forrst. Much more in depth than over-->
+<!--at Dribbble. :P</p>-->
+<!--</section>-->
+<!--<section class="actions">-->
+
+<!--<ul class="inline-list">-->
+<!--<li><a href="#">Like (2)</a></li>-->
+<!--<li><a href="#">Reply</a></li>-->
+<!--</ul>-->
+
+<!--</section>-->
+
+<!--</div>-->
+
+<!--</div>-->
+
+<!--&lt;!&ndash; INDENTED COMMENT &ndash;&gt;-->
+
+
+<!--&lt;!&ndash; INDENTED COMMENT &ndash;&gt;-->
+<!--<div class="indented comment">-->
+<!--<section class="top">-->
+<!--<h6 class="byline">-->
+<!--<a href="#"><i class="icon"></i>Jackie</a>-->
+<!--<small>said-->
+<!--<span class="data">-->
+<!--4h Ago-->
+<!--</span>-->
+<!--</small>-->
+<!--</h6>-->
+<!--</section>-->
+<!--<section class="content">-->
+<!--<p>Awesome. Always like to see illustrated characters. Some quick pieces of feedback:</p>-->
+
+<!--<ul class="bullets">-->
+<!--<li>The body positioning looks a bit unnatural, especially for the female character. Her-->
+<!--hips and bossom should be aligned at the angle her body is turned.-->
+<!--</li>-->
+<!--<li>The arms are a bit too long and have an unnatural bend at the elbows.</li>-->
+<!--<li>The fingers don't seem to be grasping the phones. They seem to sit on the palm.</li>-->
+<!--</ul>-->
+<!--</section>-->
+<!--<section class="actions">-->
+
+<!--<ul class="inline-list">-->
+<!--<li><a href="#">Like (2)</a></li>-->
+<!--<li><a href="#">Reply</a></li>-->
+<!--</ul>-->
+
+<!--</section>-->
+
+<!--</div>-->
+
+<!--</div>-->
+
+<!--</div>-->
+
+<!--</div>-->
+<!--</section>-->
+<!--&lt;!&ndash; End Content &ndash;&gt;-->
+
+<!--<a class="exit-off-canvas"></a>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!-- Nav Bar -->
+<div class="row">
+    <div class="large-12 columns">
+        <div class="nav-bar right">
+            <ul class="button-group">
+                <li><a href="#" class="button">Link 1</a></li>
+                <li><a href="#" class="button">Link 2</a></li>
+                <li><a href="#" class="button">Link 3</a></li>
+                <li><a href="#" class="button">Link 4</a></li>
+            </ul>
         </div>
+        <h1>&lt;
+            <small>Insert Clever Blog Name</small>
+            &gt;</h1>
+        <hr/>
+    </div>
+</div>
+<!-- End Nav -->
 
 
-        <div id="content">
-            {% block content %}{% endblock %}
+<!-- Main Page Content and Sidebar -->
+<div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="large-9 columns" role="content">
+        {% block content %}
+
+        {% endblock %}
+    </div>
+    <!-- End Main Content -->
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns">
+        <h5>Categories</h5>
+        <ul class="side-nav">
+            <li><a href="#">News</a></li>
+            <li><a href="#">Code</a></li>
+            <li><a href="#">Design</a></li>
+            <li><a href="#">Fun</a></li>
+            <li><a href="#">Weasels</a></li>
+        </ul>
+
+        <div class="panel">
+            <h5>Featured</h5>
+
+            <p>Pork drumstick turkey fugiat. Tri-tip elit turducken pork chop in. Swine short ribs meatball irure bacon
+                nulla pork belly cupidatat meatloaf cow.</p>
+            <a href="#">Read More &rarr;</a>
+        </div>
+    </aside>
+    <!-- End Sidebar -->
+</div>
+<!-- End Main Content and Sidebar -->
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+        <hr/>
+        <div class="row">
+            <div class="large-6 columns">
+                <p>&copy; Brandon Martel</p>
+            </div>
+            <div class="large-6 columns">
+                <ul class="inline-list right">
+                    <li><a href="#">Link 1</a></li>
+                    <li><a href="#">Link 2</a></li>
+                    <li><a href="#">Link 3</a></li>
+                    <li><a href="#">Link 4</a></li>
+                </ul>
+            </div>
         </div>
     </div>
+</footer>
 
-    <script src="{{ STATIC_URL }}/static/js/jquery-1.9.1.js"></script>
-    {% block extra_js %}{% endblock %}
+<div id="sidebar"> {% block sidebar %} {% endblock %}</div>
+
+<script src="{{ STATIC_URL }}/static/vendor/foundation/bower_components/jquery/dist/jquery.js"></script>
+<script src="{{ STATIC_URL }}/static/vendor/foundation/bower_components/fastclick/lib/fastclick.js"></script>
+<script src="{{ STATIC_URL }}/static/vendor/foundation/bower_components/foundation/js/foundation.min.js"></script>
+<script src="{{ STATIC_URL }}/static/vendor/foundation/js/app.js"></script>
+
+{% block extra_js %}{% endblock %}
 
 </body>
 </html>

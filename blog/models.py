@@ -13,6 +13,17 @@ class Post(models.Model):
         return self.title
 
 
+class Comment(models.Model):
+    created = models.DateTimeField(auto_now_add=True)
+    author = models.CharField(max_length=60)
+    body = models.TextField()
+    post = models.ForeignKey(Post)
+    parent = models.ForeignKey('self', null=True, related_name='replies')
+
+    def __unicode__(self):
+        return unicode("%s: %s" % (self.post, self.body[:60]))
+
+
 ### Admin
 
 class PostAdmin(admin.ModelAdmin):
@@ -20,6 +31,11 @@ class PostAdmin(admin.ModelAdmin):
 
 admin.site.register(Post, PostAdmin)
 
+
+class CommentAdmin(admin.ModelAdmin):
+    display_fields = ["post", "author", "created"]
+
+admin.site.register(Comment, CommentAdmin)
 
 # class Thread(models.Model):
 #     question_text = models.CharField(max_length=200)
