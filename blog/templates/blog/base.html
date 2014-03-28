@@ -1,7 +1,5 @@
 <!doctype html>
 {% load compress %}
-
-{% comment %} paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ {% endcomment %}
 <!--[if lt IE 7]> <html class="lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
 <!--[if IE 7]>    <html class="lt-ie10 lt-ie9 lt-ie8" lang="en"> <![endif]-->
 <!--[if IE 8]>    <html class="lt-ie10 lt-ie9" lang="en"> <![endif]-->
@@ -13,47 +11,41 @@
 
      <title>{% block title %}MyBlog{% endblock %}</title>
 
-    {% compress css %}
-        {% comment %} Core CSS includes (for inclusion on all pages) {% endcomment %}
 
-    {% endcompress %}
+    <link rel="stylesheet" href="{{ STATIC_URL }}/static/vendor/no-bss/css/combined/app.min.css"/>
 
-    {% compress css %}
-        {% comment %}
-            Per-page CSS is compressed separately so that the global stuff doesn't get re-downloaded each time 
-        {% endcomment %}
-        {% block extra_css %}{% endblock %}
-    {% endcompress %}
+    {% block extra_css %}{% endblock %}
 
 </head>
 <body>
 
     <div id="sidebar"> {% block sidebar %} {% endblock %} </div>
-    <div id="container">
-        <div id="menu">
-            {% block nav-global %}
+    <div id="container" class="container fancy-wrap">
+        <div class="row">
+            <div class="columns two">My Blog</div>
+            <div id="menu">
+                {% block nav-global %}
 
-                <!-- Main Nav -->
-                <h3>MyBlog</h3>
-                {% if user.is_staff %}
-                <a href="{% url 'admin:index' %}">Admin</a>
-                <a href="{% url 'admin:blog_post_add' %}">Add post</a>
-                {% endif %}
+                    <!-- Main Nav -->
 
-            {% endblock %}
+                    {% if user.is_staff %}
+                    <a href="{% url 'admin:index' %}">Admin</a>
+                    <a href="{% url 'admin:blog_post_add' %}">Add post</a>
+                    {% endif %}
+
+                {% endblock %}
+            </div>
+            <div class="columns fourteen">Tabs go here!!</div>
         </div>
+
 
         <div id="content">
             {% block content %}{% endblock %}
         </div>
     </div>
 
-    <script src="{{ STATIC_URL }}js/jquery-1.9.1.js"></script>
-    {% compress js %}
-        {% comment %}
-            Per-page JS is compressed separately so that the global stuff doesn't get re-downloaded each time
-        {% endcomment %}
-        {% block extra_js %}{% endblock %}
-    {% endcompress %}
+    <script src="{{ STATIC_URL }}/static/js/jquery-1.9.1.js"></script>
+    {% block extra_js %}{% endblock %}
+
 </body>
 </html>
